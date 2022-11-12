@@ -1125,6 +1125,9 @@ class DraftTrainingCallback(BaseCallback):
             first_eval, *_ = info["drawn"]
             drawn = [card.id for card in first_eval]
 
+            # shuffle drawn cards
+            self.rng.shuffle(drawn)
+
             # prepend undrawn cards to drawn list
             undrawn = Counter(drafted) - Counter(drawn)
             drawn = list(undrawn.elements()) + drawn
